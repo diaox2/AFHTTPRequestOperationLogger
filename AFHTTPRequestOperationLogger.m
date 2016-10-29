@@ -190,6 +190,10 @@ static void * AFHTTPRequestOperationStartDate = &AFHTTPRequestOperationStartDate
 
 - (NSString *)convertToPrettyJSON:(NSString *)responseString {
     NSDictionary *prettyResponseDictionary = [NSJSONSerialization JSONObjectWithData:[responseString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+    
+    if (!prettyResponseDictionary) {
+        return responseString;
+    }
 
     NSData *jsonData =
                         [NSJSONSerialization dataWithJSONObject:prettyResponseDictionary
